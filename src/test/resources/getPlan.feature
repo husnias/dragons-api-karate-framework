@@ -12,3 +12,7 @@ Feature: get Plan code
     When method get
     Then status 200
     And print response
+    And assert response[0].planExpired == false
+    And assert response[1].planExpired == false
+    And assert response[2].planExpired == false
+    And assert response[3].planExpired == false
