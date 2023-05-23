@@ -1,4 +1,4 @@
-
+@Smoke
 Feature: Get API Account
 
   #Scenario 9:
