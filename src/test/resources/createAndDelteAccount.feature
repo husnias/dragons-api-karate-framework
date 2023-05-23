@@ -1,3 +1,4 @@
+@Smoke
 Feature: Create Account and delete Test
 
   Background: API Test Setup
