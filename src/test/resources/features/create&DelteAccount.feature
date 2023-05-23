@@ -1,5 +1,5 @@
 @Regression
-Feature: Create Account Test
+Feature: Create Account and delete Test
 
   Background: API Test Setup
     * def result = callonce read('GenerateToken.feature')
@@ -12,7 +12,7 @@ Feature: Create Account Test
     And header Authorization = "Bearer " + generatedToken
     And request
       """
-      { "email": "Sunrise@postman.com",
+      { "email": "SunriseTTTT@postman.com",
       		"firstName": "HusniaS",
       		"lastName": "sidiqi","title": "Ms.",
       		"gender": "FEMALE","maritalStatus": "MARRIED",
@@ -23,4 +23,12 @@ Feature: Create Account Test
     When method post
     Then status 201
     Then print response
-    And assert response.email == "Sunrise@postman.com"
+    And assert response.email == "SunriseTTTT@postman.com"
+    #Delete Account
+    Given path "api/accounts/delete-account"
+    And header Authorization = "Bearer " + generatedToken
+    And param primaryPersonId = response.id
+    When method delete
+    Then status 200
+    And print response
+    And assert response == "Account Successfully deleted"
