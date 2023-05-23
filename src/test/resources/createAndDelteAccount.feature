@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @Regression
+=======
+@Smoke
+>>>>>>> d0f5296a6cee86494f396ae98c137c977b36844d
 Feature: Create Account and delete Test
 
   Background: API Test Setup
