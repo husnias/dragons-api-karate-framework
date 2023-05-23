@@ -8,7 +8,7 @@ public class KarateTestRunner {
 	public Karate runTests(){
 		// run() method required path to feature files.
 		// you can use tags() method to specify the Tag
-		return Karate.run("classpath:feature")
+		return Karate.run("classpath:createAndDelteAccount.feature")
 				.tags("Regression");
 	}
 }

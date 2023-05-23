@@ -1,3 +1,4 @@
+@Regression
 Feature: Create Account and delete Test
 
   Background: API Test Setup
