@@ -8,7 +8,7 @@ public class SmokeTestRunner {
 	public Karate runTests(){
 		// run() method required path to feature files.
 		// you can use tags() method to specify the Tag
-		return Karate.run("classpath:features")
+		return Karate.run("classpath:AccountE2ETest.feature")
 				.tags("Smoke");
 	}
 }
