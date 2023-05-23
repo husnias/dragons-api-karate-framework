@@ -2,7 +2,7 @@ package api.runners;
 
 import com.intuit.karate.junit5.Karate;
 
-public class SmokeTestRunner {
+public class SmokeTesRunner {
 
 	@Karate.Test 
 	public Karate runTests(){
