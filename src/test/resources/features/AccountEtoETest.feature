@@ -1,4 +1,4 @@
-@Regression
+
 Feature: Account Testing
 
   Background: Setup Test Generate Token
