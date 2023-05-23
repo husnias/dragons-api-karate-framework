@@ -1,3 +1,4 @@
+@Regression
 Feature: Create Account Test
 
   Background: API Test Setup
