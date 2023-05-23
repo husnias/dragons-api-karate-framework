@@ -28,7 +28,7 @@
 				<version>2.22.2</version>
 				<configuration>
 					<includes>
-						<include>SmokeTestRunner.java</include>
+						<include>karateTestRunner.java</include>
 					</includes>
 				</configuration>
 			</plugin>
