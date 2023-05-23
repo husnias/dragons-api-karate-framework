@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 @Regression
-=======
-@Smoke
->>>>>>> d0f5296a6cee86494f396ae98c137c977b36844d
-Feature: Create Account and delete Test
+Feature: Create Account Test
 
   Background: API Test Setup
     * def result = callonce read('GenerateToken.feature')
@@ -12,11 +8,13 @@ Feature: Create Account and delete Test
     Given url "https://tek-insurance-api.azurewebsites.net"
 
   Scenario: Create Account
+    * def dataGenerator = Java.type('api.data.GenerateData')
+    * def autoEmail = dataGenerator.getEmail()
     Given path "/api/accounts/add-primary-account"
     And header Authorization = "Bearer " + generatedToken
     And request
       """
-      { "email": "SunriseT@postman.com",
+      { "email":"#(autoEmail)" ,
       		"firstName": "HusniaS",
       		"lastName": "sidiqi","title": "Ms.",
       		"gender": "FEMALE","maritalStatus": "MARRIED",
@@ -27,12 +25,4 @@ Feature: Create Account and delete Test
     When method post
     Then status 201
     Then print response
-    And assert response.email == "SunriseT@postman.com"
-    #Delete Account
-    Given path "api/accounts/delete-account"
-    And header Authorization = "Bearer " + generatedToken
-    And param primaryPersonId = response.id
-    When method delete
-    Then status 200
-    And print response
-    And assert response == "Account Successfully deleted"
+    And assert response.email == autoEmail
