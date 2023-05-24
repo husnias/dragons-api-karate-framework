@@ -9,8 +9,6 @@ Feature: Account Testing
   Scenario: End to End Account testing
     * def dataGenerator = Java.type('api.data.GenerateData')
     * def autoEmail = dataGenerator.getEmail()
-    * def autoPlateNum = dataGenerator.getNumberPlate()
-    * def autoPhoneNum = dataGenerator.getPhoneNumber()
     Given path "/api/accounts/add-primary-account"
     And header Authorization = "Bearer " + token
     And request
@@ -28,10 +26,11 @@ Feature: Account Testing
     Then status 201
     Then print response
     And assert response.email == autoEmail
+    * def generatedAccountId = response.id
     #address
     Given path "/api/accounts/add-account-address"
+    And param primaryPersonId = generatedAccountId
     And header Authorization = "Bearer " + token
-    And param primaryPersonId = response.id
     And request
       """
       {
@@ -51,8 +50,9 @@ Feature: Account Testing
     And assert response.addressType == "House"
     #add car
     Given path "/api/accounts/add-account-car"
+    And param primaryPersonId = generatedAccountId
     And header Authorization = "Bearer " + token
-    And param primaryPersonId = response.id
+    * def autoPlateNum = dataGenerator.getNumberPlate()
     And request
       """
       {
@@ -69,8 +69,9 @@ Feature: Account Testing
     And assert response.licensePlate == autoPlateNum
     #add phone
     Given path "/api/accounts/add-account-phone"
+    And param primaryPersonId = generatedAccountId
     And header Authorization = "Bearer " + token
-    And param primaryPersonId = response.id
+    * def autoPhoneNum = dataGenerator.getPhoneNumber()
     And request
       """
       {      
@@ -86,9 +87,8 @@ Feature: Account Testing
     And assert response.phoneNumber == autoPhoneNum
     #Get account
     Given path "/api/accounts/get-account"
-    And param primaryPersonId = response.id
+    And param primaryPersonId = generatedAccountId
     And header Authorization = "Bearer " + token
     When method get
     Then status 200
     And print response
-    
